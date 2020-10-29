@@ -1,0 +1,14 @@
+server:
+  port: 8080
+config:
+  path: classpath:/config
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: ${config.path}/{application}

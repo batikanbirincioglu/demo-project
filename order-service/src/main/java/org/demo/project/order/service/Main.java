@@ -1,4 +1,4 @@
-package org.demo.project.customer.service;
+package org.demo.project.order.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@EntityScan("org.demo.project.customer.service.*")
+@EntityScan("org.demo.project.order.service.*")
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);

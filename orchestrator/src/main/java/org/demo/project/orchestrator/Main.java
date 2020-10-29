@@ -1,18 +1,18 @@
-package org.demo.project.customer.service;
+package org.demo.project.orchestrator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-@EnableDiscoveryClient
 @SpringBootApplication
-@EntityScan("org.demo.project.customer.service.*")
+@EnableDiscoveryClient
+@EnableFeignClients
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);

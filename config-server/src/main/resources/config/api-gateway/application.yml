@@ -1,0 +1,15 @@
+server:
+  port: 8082
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${SERVICE_REGISTRY_URL:http://localhost:8081/eureka/}
+    registerWithEureka: false
+    fetchRegistry: true
+  instance:
+    preferIpAddress: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

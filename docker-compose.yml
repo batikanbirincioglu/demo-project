@@ -1,0 +1,55 @@
+version: '3'
+services:
+  config-server:
+    image: batikanbirincioglu/config-server
+    ports:
+      - 8080:8080
+  service-registry:
+    image: batikanbirincioglu/service-registry
+    ports:
+      - 8081:8081
+    environment:
+      - CONFIG_SERVER_URL=http://config-server:8080/
+      - SERVICE_REGISTRY_URL=http://service-registry:8081/eureka/
+    depends_on:
+      - config-server
+  api-gateway:
+    image: batikanbirincioglu/api-gateway
+    ports:
+      - 8082:8082
+    environment:
+      - CONFIG_SERVER_URL=http://config-server:8080/
+      - SERVICE_REGISTRY_URL=http://service-registry:8081/eureka/
+    depends_on:
+      - config-server
+      - service-registry
+  order-service:
+    image: batikanbirincioglu/order-service
+    ports:
+      - 8083:8083
+    environment:
+      - CONFIG_SERVER_URL=http://config-server:8080/
+      - SERVICE_REGISTRY_URL=http://service-registry:8081/eureka/
+    depends_on:
+      - config-server
+      - service-registry
+  customer-service:
+    image: batikanbirincioglu/customer-service
+    ports:
+      - 8084:8084
+    environment:
+      - CONFIG_SERVER_URL=http://config-server:8080/
+      - SERVICE_REGISTRY_URL=http://service-registry:8081/eureka/
+    depends_on:
+      - config-server
+      - service-registry
+  orchestrator:
+    image: batikanbirincioglu/orchestrator
+    ports:
+      - 8085:8085
+    environment:
+      - CONFIG_SERVER_URL=http://config-server:8080/
+      - SERVICE_REGISTRY_URL=http://service-registry:8081/eureka/
+    depends_on:
+      - config-server
+      - service-registry
