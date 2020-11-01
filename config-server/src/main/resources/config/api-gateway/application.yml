@@ -13,3 +13,12 @@ management:
     web:
       exposure:
         include: '*'
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000

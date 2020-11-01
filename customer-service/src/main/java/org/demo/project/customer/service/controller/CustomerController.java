@@ -29,13 +29,13 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping(value = "/getCustomerById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseDto getCustomerById(@PathVariable Long id) throws JsonProcessingException {
+    public ResponseDto getCustomerById(@PathVariable Long id) {
         Response response = customerService.getCustomerById(id);
         return new ResponseDto(response.getResult(), response.getAdditionalInfo());
     }
 
     @GetMapping(value = "/getAllCustomers", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseDto getAllCustomers() throws JsonProcessingException {
+    public ResponseDto getAllCustomers() {
         Response response = customerService.getAllCustomers();
         return new ResponseDto(response.getResult(), response.getAdditionalInfo());
     }
@@ -46,13 +46,13 @@ public class CustomerController {
         return new ResponseDto(response.getResult(), response.getAdditionalInfo());
     }
 
-    @PutMapping(value = "/reserveCredit", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/reserveCredit", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseDto reserveCredit(@RequestBody ReserveCreditDto reserveCreditDto) {
         Response response = customerService.reserveCredit(reserveCreditDto.getCustomerId(), new BigDecimal(reserveCreditDto.getCreditReservation()));
         return new ResponseDto(response.getResult(), response.getAdditionalInfo());
     }
 
-    @PutMapping(value = "/releaseCredit", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/releaseCredit", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseDto releaseCredit(@RequestBody ReleaseCreditDto releaseCreditDto) {
         Response response = customerService.releaseCredit(releaseCreditDto.getCustomerId(), new BigDecimal(releaseCreditDto.getCreditRelease()));
         return new ResponseDto(response.getResult(), response.getAdditionalInfo());

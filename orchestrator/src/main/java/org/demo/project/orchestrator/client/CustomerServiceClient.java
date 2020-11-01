@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 @FeignClient("customer-service")
 public interface CustomerServiceClient {
-    @PutMapping(value = "/reserveCredit", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseDto reserveCredit(@RequestBody ReserveCreditDto reserveCreditDto);
+    @PostMapping(value = "/reserveCredit", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseDto reserveCredit(@RequestBody ReserveCreditDto reserveCreditDto);
 
-    @PutMapping(value = "/releaseCredit", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseDto releaseCredit(@RequestBody ReleaseCreditDto releaseCreditDto);
+    @PostMapping(value = "/releaseCredit", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseDto releaseCredit(@RequestBody ReleaseCreditDto releaseCreditDto);
 
     @GetMapping(value = "/getCustomerById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseDto getCustomerById(@PathVariable Long id);
+    ResponseDto getCustomerById(@PathVariable Long id);
 }

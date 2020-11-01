@@ -30,10 +30,8 @@ public class OrderService {
         // Simulate database exception
         numberOfApprovals++;
         if (numberOfApprovals % 3 == 0) {
-            Response response = new Response(Result.FAILURE, "Database exception occurred.");
-            return response;
+            return new Response(Result.FAILURE, "Database exception occurred.");
         }
-
         Order order = orderRepository.getOrderById(id);
         order.setState(Order.State.APPROVED);
         orderRepository.saveAndFlush(order);
@@ -48,10 +46,9 @@ public class OrderService {
         return new Response(Result.SUCCESS, String.format("Order = %s is rejected.", id));
     }
 
-    public Response deleteOrder(Long id) {
+    public void deleteOrder(Long id) {
         orderRepository.deleteById(id);
         orderRepository.flush();
-        return new Response(Result.SUCCESS, String.format("Order = %s is deleted.", id));
     }
 
     public Response getOrdersByCustomerId(Long customerId) {
